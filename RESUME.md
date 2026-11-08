@@ -1,5 +1,7 @@
 # Resume and portfolio lines
 
+> **Stub.** Claude drafted this from the evidence, aimed at a recruiter. The real wording, voice and format are decided with the owner in package E (presentation).
+
 Every figure is from [evidence/NUMBERS.md](evidence/NUMBERS.md). Percentages: average session token cost $14.83 → $6.26 is −58%; average peak context 451k → 268k is −41%. Say "AI coding agents" plainly: hiding it is worse than stating it.
 
 ## Projects-section entry (pick one)
@@ -35,4 +37,4 @@ Every figure is from [evidence/NUMBERS.md](evidence/NUMBERS.md). Percentages: av
 | What did it cost? | About $1,433 at list price over 207 sessions (subscription in practice). A median implementation brief: 3.5 sessions, $23. | NUMBERS.md |
 | What went wrong? | 58% of sessions still exceed the context target; ceremony overhead ("procedural saturation"); the gates proved correctness but not fun. | CASE_STUDY → "What didn't work" |
 | Would you use this at work? | The lite tier, yes: read order, briefs with checkpoints, verified handoffs, the gate, and a cost ledger. The full tier only for long-running, high-stakes work. | CASE_STUDY → last section |
-| Pick one component and walk me through it. | Prepare two: the verified-vs-claimed handoff (why: a failure in an earlier project) and the cost ledger (what it measures, which rule it produced). | DECISIONS.md rows 1, 4 |
+| Pick one component and walk me through it. | Prepare two: the verified-vs-claimed handoff (why: a failure in an earlier project) and the cost ledger (what it measures, which rule it produced). | DECISIONS.md rows 1, 5 |

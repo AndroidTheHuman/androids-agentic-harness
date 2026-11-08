@@ -1,5 +1,7 @@
 # Orchestrating coding agents on a 45k-line codebase
 
+> **Stub.** Claude drafted this from the evidence, in a voice aimed at a recruiter. Audience, form (page, README, talk, live demo) and voice are decided with the owner in package E (presentation). Until then, its facts are checked but its framing isn't settled.
+
 **In short.** I designed and ran the **harness** that let AI coding agents (Claude Code, with Codex and Gemini as outside reviewers) build *Infinity Autobattler*, a procedural card game, over 207 working sessions in 44 days. The harness keeps short-lived sessions coherent:
 - no session's claim enters the shared project state until the next session has re-checked it;
 - the checks grow with the risk of a change;
@@ -11,12 +13,12 @@ Its measurements changed my rules: after one runaway session, a one-package-per-
 
 I worked as the project's designer and tech lead; the agents were the engineers.
 
-- **I decided** what the game is (vision, pillars, what it is *not*), approved every plan before work started, answered the design questions each plan raised, and set which model may do which kind of work. I also changed the process whenever a measurement said it wasn't working: the twelve decisions in [evidence/DECISIONS.md](evidence/DECISIONS.md), each with what prompted it.
+- **I decided** what the game is (vision, pillars, what it is *not*), approved every plan before work started, answered the design questions each plan raised, and set which model may do which kind of work. I also changed the process whenever a measurement said it wasn't working: the thirteen decisions in [evidence/DECISIONS.md](evidence/DECISIONS.md), each with what prompted it.
 - **I delegated** implementation, tests, tooling, the drafting of briefs from my intent, audits and reviews.
 
 Most of my input is intent, not instructions: a few sentences on what I want and why. The harness turns that into a plan with explicit decisions for me to approve, then into briefs specific enough to leave the implementing session few judgment calls. Design conflicts the documents don't settle come to me and are never resolved silently. Smaller calls the session makes itself go into its handoff, where a review grades them.
 
-The harness has two generations. The first, in my earlier project Omni Engine, supplied the rules file, the verified-vs-claimed handoff, and the skills for pre-change risk checks and brief writing. This project added the measurement layer: the cost ledger and hook, the doc budgets, parts with checkpoints, model trials, outside review and typed playtests.
+The harness has two generations, both mine. The first, built in my earlier project Omni Engine, supplied the rules file, the verified-vs-claimed handoff, and the skills for pre-change risk checks and brief writing. I carried it over by reference: frozen read-only copies of the earlier project, plus a rule for porting from them. This project added the measurement layer: the cost ledger and hook, the doc budgets, parts with checkpoints, model trials, outside review and typed playtests.
 
 ## The loop
 
