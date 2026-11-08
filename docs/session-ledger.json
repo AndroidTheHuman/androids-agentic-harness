@@ -1,0 +1,34 @@
+[
+ {
+  "id": "fa59a5f7-b69f-4aae-af0c-a248141d8ceb",
+  "start": "2026-11-08T22:41:23.640Z",
+  "title": "HANDOFF.md package B",
+  "hours": 0.3,
+  "prompts": 1,
+  "calls": 63,
+  "peakK": 296,
+  "endK": 296,
+  "reReadM": 13,
+  "agents": 0,
+  "agentReReadM": 0,
+  "agentPeakK": 0,
+  "cacheWriteK": 268,
+  "outK": 113,
+  "thinkK": 36,
+  "costUSD": null,
+  "workMin": 18.7,
+  "waitMin": 1.6,
+  "model": "opus-5.5 xhigh",
+  "listUSD": 7,
+  "tools": 114,
+  "toolErrors": 0,
+  "gates": 1,
+  "commits": 0,
+  "linesAdded": null,
+  "bigReads": 1,
+  "coldCaches": 0,
+  "flags": [
+   "context 296k"
+  ]
+ }
+]

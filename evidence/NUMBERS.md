@@ -38,6 +38,7 @@ Commits per ISO week:
 | Changelog entries (dated) | 284 | `docs/archive/CHANGELOG.md` |
 | Skills | 8 | `.claude/skills/*/SKILL.md` |
 | Outside-agent reviews (Codex, Gemini) | 39 | MODEL_CHOICE → Outside log |
+| Outside runs from R9 (after the owner's 2026-10-25 decision) | 31 runs; 28 raised items; 22 had every item confirmed | MODEL_CHOICE → Outside log (N and Confirmed columns) |
 | Model-routing trials | 8 | MODEL_CHOICE → Trial log |
 | Playtest findings | 116 (F1–F116) over 4 runs | `docs/playtests/*/REGISTER.md` |
 | Parked ideas | 183 | `docs/IDEAS.md` |

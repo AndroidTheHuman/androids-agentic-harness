@@ -93,6 +93,15 @@ const handoffsOpen = files('docs/*').filter((f) => /^docs\/SESSION_HANDOFF_[^/]*
 const skills = files('.claude/skills/*').filter((f) => /SKILL\.md$/.test(f));
 const modelChoice = read('docs/MODEL_CHOICE.md');
 const outsideRuns = new Set([...modelChoice.matchAll(/^\| \d{4}-\d{2}-\d{2} \| (R\d+) \|/gm)].map((m) => m[1]));
+// Outside runs from R9, the first after the owner made the Codex cold read standing (2026-10-25):
+// how many raised items (N > 0), and how many had every item confirmed (Confirmed = N).
+const outsideLater = [...modelChoice.matchAll(/^\| \d{4}-\d{2}-\d{2} \| R(\d+) \|([^\n]*)$/gm)]
+  .map((m) => ({ run: Number(m[1]), cells: m[2].split('|').map((c) => c.trim()) }))
+  .filter((r) => r.run >= 9)
+  // cells after the run id: route, tool, wall, N, Confirmed, New, …
+  .map((r) => ({ n: /^\d+$/.test(r.cells[3]) ? Number(r.cells[3]) : 0, confirmed: /^\d+$/.test(r.cells[4]) ? Number(r.cells[4]) : -1 }));
+const outsideRaised = outsideLater.filter((r) => r.n > 0);
+const outsideAllConfirmed = outsideRaised.filter((r) => r.confirmed === r.n);
 const trialRows = [...modelChoice.split('## Trial log')[1].matchAll(/^\| \d{4}-\d{2}-\d{2} \|/gm)].length;
 const registers = files('docs/playtests/*').filter((f) => /REGISTER\.md$/.test(f));
 const findingIds = new Set();
@@ -113,6 +122,7 @@ p(`| Session handoffs | ${handoffsArchived.length} archived + ${handoffsOpen.len
 p(`| Changelog entries (dated) | ${changelogEntries} | \`docs/archive/CHANGELOG.md\` |`);
 p(`| Skills | ${skills.length} | \`.claude/skills/*/SKILL.md\` |`);
 p(`| Outside-agent reviews (Codex, Gemini) | ${outsideRuns.size} | MODEL_CHOICE → Outside log |`);
+p(`| Outside runs from R9 (after the owner's 2026-10-25 decision) | ${outsideLater.length} runs; ${outsideRaised.length} raised items; ${outsideAllConfirmed.length} had every item confirmed | MODEL_CHOICE → Outside log (N and Confirmed columns) |`);
 p(`| Model-routing trials | ${trialRows} | MODEL_CHOICE → Trial log |`);
 p(`| Playtest findings | ${findingIds.size} (F${Math.min(...findingIds)}–F${Math.max(...findingIds)}) over ${registers.length} runs | \`docs/playtests/*/REGISTER.md\` |`);
 p(`| Parked ideas | ${ideasRows} | \`docs/IDEAS.md\` |`);
