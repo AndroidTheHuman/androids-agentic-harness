@@ -5,7 +5,7 @@ What exists in this repo now, one fact per line. Sessions don't append here dire
 ## Now
 
 - Package B (the kit) was built on 2026-11-08; its facts are in `HANDOFF.md` as `[PROPOSED]` lines until the next session checks and merges them.
-- Next: package C (a research project built live with the kit), on Opus 5.5 xhigh for its brief. It needs the owner's abstract prompt for the research question, in his own words.
+- Next: package C (a research project built live with the kit), on Opus 5.5 xhigh for its brief. It needs the owner's abstract prompt for the research question, in the owner's own words.
 - The game repo is at commit `636f378` and clean; `evidence/NUMBERS.md` is measured from that commit.
 - No remote; "agentic-harness" is a working name.
 

@@ -21,10 +21,10 @@ The owner's word in this session > `docs/PLAN.md` → "Revision after package A"
 
 ## Owner rules (always apply)
 
-1. **Whose decisions.** The parts that came from Omni Engine are the owner's decisions. So is bootstrapping by reference: showing a new session files from another of his projects (`evidence/DECISIONS.md` row 2).
+1. **Whose decisions.** The parts that came from Omni Engine are the owner's decisions. So is bootstrapping by reference: showing a new session files from another of the owner's projects (`evidence/DECISIONS.md` row 2).
 2. **Voice.** Writing in the owner's voice is acceptable only as a stub, marked as one. Presentation (audience, form, voice) is package E, and the owner leads it. When in doubt, defer the framing to E.
 3. **What to add.** New harness parts are welcome when they close the self-improvement loop (package D) or let the kit build an impressive project from scratch (package C). Anything else goes to `docs/IDEAS.md` as a one-liner.
-4. **Don't make the owner dig.** His prompts are recoverable by script: `node evidence/owner-turns.mjs <transcript folder>` writes them to `evidence/private/` (git-ignored). Older text is in the game repo: `docs/archive/2026-09/KICKOFF_PROMPT.md`, `docs/STEP_BACK.md` answers, briefs' Status lines, and quotes in the changelog. Omni's transcripts are gone except one worktree session (2026-03-17).
+4. **Don't make the owner dig.** The owner's prompts are recoverable by script: `node evidence/owner-turns.mjs <transcript folder>` writes them to `evidence/private/` (git-ignored). Older text is in the game repo: `docs/archive/2026-09/KICKOFF_PROMPT.md`, `docs/STEP_BACK.md` answers, briefs' Status lines, and quotes in the changelog. Omni's transcripts are gone except one worktree session (2026-03-17).
 5. **Commits.** Use Conventional Commits (`docs:`, `feat:`, `test:`, `chore:`). Never push without the owner's go-ahead. No remote exists yet.
 
 ## Mandatory rules (always apply)
