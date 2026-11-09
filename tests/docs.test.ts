@@ -1,7 +1,8 @@
 // The session-start read has a size budget.
 // Ported from Infinity Autobattler tests/docs.test.ts @ 636f378. Changes: the documents are
 // settings (below) instead of the game's names; the start read may include whole documents
-// beside PROJECT_CONTEXT.md's head; the brief checks run only when the briefs folder exists; the
+// beside PROJECT_CONTEXT.md's head, and a start document can be read only if present (the handoff);
+// the brief checks run only when the briefs folder exists; the
 // doc-moves tests moved to tests/docMoves.test.ts. As shipped, the settings name this repo's own
 // documents: the kit runs on itself. To adopt it, copy this file and edit the settings block.
 //
@@ -28,6 +29,7 @@ const MAX_LINE = 1_000; // one fact per line in the current-state documents
 const CONTEXT = 'PROJECT_CONTEXT.md';
 const HEAD_ENDS_AFTER = 'Packages'; // the head runs from the top through this `## ` section
 const START_READ = ['CLAUDE.md', CONTEXT, 'docs/PLAN.md', 'HANDOFF.md']; // CLAUDE.md's read order, in full
+const IF_PRESENT = ['HANDOFF.md']; // start documents that may be absent (between a merge and the next handoff)
 const ONE_FACT_PER_LINE = [CONTEXT];
 const BRIEFS = 'docs/briefs';
 const CHANGELOG = 'docs/archive/CHANGELOG.md';
@@ -79,7 +81,7 @@ const partBriefs = briefs.filter((b) => /^\*\*Kind:\*\* (implementation|research
 /** The start read in real tokens: the start documents, with PROJECT_CONTEXT.md whole or its head, and each plan brief's slice. */
 function startRead(whole: boolean): { total: number; breakdown: string } {
   const parts = [
-    ...START_READ.map((f) => (f === CONTEXT && !whole ? { name: `${f} head`, body: head(text(f)) } : { name: f, body: text(f) })),
+    ...START_READ.filter((f) => !IF_PRESENT.includes(f) || existsSync(f)).map((f) => (f === CONTEXT && !whole ? { name: `${f} head`, body: head(text(f)) } : { name: f, body: text(f) })),
     ...planBriefs.map((b) => ({ name: `${b.file} (reading rule)`, body: readingSlice(b.body).slice })),
   ].map((p) => ({ name: p.name, tokens: tokens(p.body) }));
   return { total: parts.reduce((s, p) => s + p.tokens, 0), breakdown: parts.map((p) => `${p.name} ${p.tokens}`).join(', ') };

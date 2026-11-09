@@ -32,4 +32,5 @@ wrong model's rates).
 
 | Start | Session | Model | Prompts | Calls | Work | Waited | Peak ctx | Re-read | Agents | Out (think) | Cost | Commits | $/commit | Lines + | Flags |
 |---|---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|---|
-| 2026-11-08 22:41 | HANDOFF.md package B | opus-5.5 xhigh | 1 | 63 | 19m | 2m | 296k | 13M | 0 | 113k (36k) | $7.00 | 0 | — | — | context 296k |
+| 2026-11-09 00:05 | HANDOFF.md package C research question | opus-5.5 xhigh | 1 | 28 | 11m | 1m | 135k | 2.7M | 0 | 54k (41k) | $2.45 | 0 | — | — |  |
+| 2026-11-08 22:41 | HANDOFF.md package B | opus-5.5 xhigh | 1 | 70 | 21m | 2m | 311k | 15.2M | 0 | 125k (39k) | $7.79 | 2 | $3.90 | — | context 311k, 2 commits |
