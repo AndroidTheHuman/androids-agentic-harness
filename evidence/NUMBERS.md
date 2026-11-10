@@ -47,13 +47,14 @@ Commits per ISO week:
 ## Session ledger (`docs/session-ledger.json`, written by `npm run sessions`)
 
 Cost is list-price dollars from the token counts: a relative measure, since the work ran on a subscription.
+The game's ledger prices Sonnet 5.5 cache reads at twice the published rate, so the 42 rows with a Sonnet call are re-priced at the kit's rates (claude-sonnet-5-5 cacheRead 0.2 → 0.1): $265.76 → $188.42, by `node --no-warnings evidence/reprice.mjs "<game repo>"` into `evidence/game-repriced.json`; 0 such rows had no transcript left to re-price.
 
 | Measure | Value |
 | --- | --: |
 | Sessions | 207 (2026-09-26 → 2026-11-08) |
 | Model calls | 15,200 |
 | Tokens re-read from cache | 3.17B |
-| Cost (list price) | $1,433 |
+| Cost (list price) | $1,416 |
 | Commits made in sessions | 347 |
 | Sessions with at least one flag | 161 |
 | Median peak context | 279k |
@@ -65,16 +66,16 @@ Cost is list-price dollars from the token counts: a relative measure, since the 
 
 | Group | Sessions | Avg peak | Median peak | Avg re-read | Avg calls | Avg cost | Peak > 250k |
 | --- | --: | --: | --: | --: | --: | --: | --: |
-| 2026-09 | 16 | 451k | 474k | 30.7M | 95 | $14.83 | 81% |
-| 2026-10 | 175 | 269k | 278k | 13.8M | 72 | $6.14 | 59% |
-| 2026-11 | 16 | 255k | 249k | 17.0M | 72 | $7.60 | 44% |
+| 2026-09 | 16 | 451k | 474k | 30.7M | 95 | $14.82 | 81% |
+| 2026-10 | 175 | 269k | 278k | 13.8M | 72 | $6.07 | 59% |
+| 2026-11 | 16 | 255k | 249k | 17.0M | 72 | $7.28 | 44% |
 
 ### Before and after the session-economy rules (ledger + hook + briefs in parts, 2026-10-02, `66f07aa`)
 
 | Group | Sessions | Avg peak | Median peak | Avg re-read | Avg calls | Avg cost | Peak > 250k |
 | --- | --: | --: | --: | --: | --: | --: | --: |
-| before 2026-10-02 | 16 | 451k | 474k | 30.7M | 95 | $14.83 | 81% |
-| from 2026-10-02 | 191 | 268k | 272k | 14.0M | 72 | $6.26 | 58% |
+| before 2026-10-02 | 16 | 451k | 474k | 30.7M | 95 | $14.82 | 81% |
+| from 2026-10-02 | 191 | 268k | 272k | 14.0M | 72 | $6.17 | 58% |
 
 ### Largest sessions by peak context
 

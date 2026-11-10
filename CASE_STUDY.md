@@ -1,6 +1,8 @@
 # Orchestrating coding agents on a 45k-line codebase
 
 > **Stub.** Claude drafted this from the evidence, in a voice aimed at a recruiter. Audience, form (page, README, talk, live demo) and voice are decided with the owner in package E (presentation). Until then, its facts are checked but its framing isn't settled.
+>
+> **Out of date since 2026-11-10.** Its dollar figures, the 58% and the routing paragraph ("27–31% per part … cache reads cost the same") predate the price correction (`evidence/AUDIT_FABLE_2026-11.md` finding 1). Package E takes them again from `evidence/NUMBERS.md`, and the 58% is per session, not per unit of work (finding 2).
 
 **In short.** I designed and ran the **harness** that let AI coding agents (Claude Code, with Codex and Gemini as outside reviewers) build *Infinity Autobattler*, a procedural card game, over 207 working sessions in 44 days. The harness keeps short-lived sessions coherent:
 - no session's claim enters the shared project state until the next session has re-checked it;

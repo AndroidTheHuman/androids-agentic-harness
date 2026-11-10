@@ -11,7 +11,7 @@ What exists in the code right now, one fact per line. Sessions never append here
 
 - Status: <what was last done, with its commit>.
 - Next: <the next package and its brief>, on <model, effort>.
-- Gate: <n>/<n> tests in <k> files at <commit>.
+- Gate: <n>/<n> tests in <k> files (at <commit>, once there is one).
 - <Any fingerprint, snapshot or version a session must check before its work.>
 
 ## Phases and briefs

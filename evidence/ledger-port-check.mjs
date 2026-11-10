@@ -12,12 +12,17 @@
 //      hours after the session: when the file was modified after <rev>'s commit, the check
 //      recomputes without those records.
 //    The row is reproduced when either recomputation gives it exactly.
+// 3. The check proves the port, not the prices: it computes at the rates the game committed at <rev>
+//    (its tools/sessionMeasures.ts → PRICES). Since 2026-11-10 the kit's rates differ (Sonnet 5.5's
+//    cache read, audit finding 1), so the rows whose list price the kit's rates change are counted
+//    after the check, by name.
 // Exit 0 when every row is reproduced, else 2.
 
 import { execFileSync } from 'node:child_process';
 import { readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { agentUsage, parse, scan, slugOf, summarise, transcriptDir } from '../tools/sessions.ts';
+import { KIT_PRICES, gamePrices, rateDiffs, setPrices } from './game-prices.mjs';
 
 const [game, rev = 'HEAD'] = process.argv.slice(2);
 if (game === undefined) {
@@ -31,6 +36,12 @@ const sha = execFileSync('git', ['-C', game, 'rev-parse', '--short', rev], { enc
 const committed = JSON.parse(show('docs/session-ledger.json'));
 const commitTime = Date.parse(execFileSync('git', ['-C', game, 'log', '-1', '--format=%cI', rev], { encoding: 'utf8' }).trim());
 const dir = transcriptDir(slugOf(game));
+
+// The comparison runs at the game's PRICES at <rev>; the kit's are restored after it.
+const game_ = gamePrices(game, rev);
+const diffs = rateDiffs(game_, KIT_PRICES);
+setPrices(game_);
+
 const kit = new Map(scan(dir).map((r) => [r.id, r]));
 
 const runsCurrent = (b) => b.type === 'tool_use' && /npm\s+run\s+sessions\s+--\s+--current/.test(String(b.input?.command ?? ''));
@@ -93,4 +104,16 @@ for (const f of failed) console.log(`    ${f}`);
 console.log(`- sessions newer than the committed ledger (not compared): ${newer}`);
 const latestOk = !failed.some((f) => f.startsWith(latest.id.slice(0, 8))) && kit.has(latest.id);
 console.log(`Latest committed row ${latest.id.slice(0, 8)} (${latest.title}, ${latest.start}): ${latestOk ? 'reproduced' : 'NOT reproduced'}`);
+
+// What the kit's own rates change, outside the check.
+setPrices(KIT_PRICES);
+console.log(`Rates: compared at the game's PRICES at ${sha}; the kit's differ: ${diffs.join('; ') || 'none'}`);
+if (diffs.length > 0) {
+  const moved = scan(dir).filter((r) => kit.has(r.id) && committed.some((c) => c.id === r.id) && r.listUSD !== kit.get(r.id).listUSD);
+  const sum = (xs) => xs.reduce((s, x) => s + (x ?? 0), 0);
+  console.log(
+    `- committed rows whose list price the kit's rates change: ${moved.length} ` +
+      `($${sum(moved.map((r) => kit.get(r.id).listUSD)).toFixed(2)} at the game's rates → $${sum(moved.map((r) => r.listUSD)).toFixed(2)} at the kit's)`,
+  );
+}
 process.exitCode = failed.length === 0 && latestOk ? 0 : 2;

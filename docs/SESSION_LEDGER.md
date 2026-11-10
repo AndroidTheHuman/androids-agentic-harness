@@ -5,17 +5,20 @@ by session id in `docs/session-ledger.json`, and rows outlive their transcripts)
 skill records the current session; the owner can run it any time.
 
 **Reading it.** Every model call re-reads the whole context, so *Re-read* (cache reads summed over
-the session) is what a long session costs; it grows roughly with calls × context. *Cost* is Claude
-Code's own figure where the transcript records one, else the same API-price figure computed from the
-tokens; the two agree to the cent on almost every session that has both. On a subscription it is a
-relative measure, not a bill, and `/usage` is the subscription's own. *Commits* and *Lines +* are the
-rough measure of what was delivered.
+the session) is what a long session costs; it grows roughly with calls × context. *Cost* is the API
+list price computed from the session's tokens, sub-agents included (`PRICES` in
+`tools/sessionMeasures.ts`); an old row with no computed figure shows Claude Code's own recorded one.
+The price check printed after each run compares the two on the rows that have both, model by model,
+and says FAILED when a model's recorded total is more than 5% off its computed total; a row can sit a
+few percent above, for calls Claude Code bills but doesn't write to the transcript. On a subscription it is a relative measure, not a
+bill, and `/usage` is the subscription's own. *Commits* and *Lines +* are the rough measure of what
+was delivered.
 
 *Work* is the time from each prompt to the session's last action before the next prompt; *Waited* is
 the part of it spent waiting on shell commands: foreground commands from call to result, and idle
 stretches that end when a background command reports back. *Model* is the main session's model and
-effort. Cache reads cost the same on Opus 5.5 and Sonnet 5.5 ($0.20 per million), so for the same
-tokens a Sonnet session costs a fifth to a quarter less, not half.
+effort. Every Sonnet 5.5 rate is half the Opus 5.5 rate, cache reads included ($0.10 against $0.20
+per million), so for the same tokens a Sonnet session costs half as much.
 
 **Sub-agents.** Each sub-agent has its own context, so it doesn't grow *Peak ctx*, but its calls cost
 the same way. *Re-read* includes them; *Agents* is how many ran, their share of the re-read and the
@@ -32,5 +35,7 @@ wrong model's rates).
 
 | Start | Session | Model | Prompts | Calls | Work | Waited | Peak ctx | Re-read | Agents | Out (think) | Cost | Commits | $/commit | Lines + | Flags |
 |---|---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|---|
-| 2026-11-09 00:05 | HANDOFF.md package C research question | opus-5.5 xhigh | 1 | 28 | 11m | 1m | 135k | 2.7M | 0 | 54k (41k) | $2.45 | 0 | — | — |  |
-| 2026-11-08 22:41 | HANDOFF.md package B | opus-5.5 xhigh | 1 | 70 | 21m | 2m | 311k | 15.2M | 0 | 125k (39k) | $7.79 | 2 | $3.90 | — | context 311k, 2 commits |
+| 2026-11-10 17:21 | Token ledger brief 1 review | opus-5.5 xhigh | 3 | 64 | 17m | 2m | 211k | 9.6M | 0 | 93k (54k) | $5.25 | 0 | — | — |  |
+| 2026-11-10 16:04 | Agentic harness architecture and reliability audit | fable-5.2 high | 2 | 22 | 14m | 1m | 257k | 3.4M | 0 | 72k (38k) | $0.00 | 0 | — | — | context 257k, unpriced fable-5.2 |
+| 2026-11-09 00:05 | HANDOFF.md package C research question | opus-5.5 xhigh | 1 | 32 | 12m | 1m | 142k | 3.3M | 0 | 61k (41k) | $2.76 | 1 | $2.76 | 284 |  |
+| 2026-11-08 22:41 | HANDOFF.md package B | opus-5.5 xhigh | 1 | 70 | 21m | 2m | 311k | 15.2M | 0 | 125k (39k) | $7.79 | 2 | $3.90 | 2172 | context 311k, 2 commits |

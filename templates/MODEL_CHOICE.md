@@ -24,7 +24,7 @@ Which model runs which kind of package, and how a kind earns a cheaper model. Th
 
 ## What a trial weighs
 
-- **Price.** Most of a session's cost is usually cache reads, re-read on every call. If two models charge the same for cache reads, the cheaper model saves only on output and cache writes. In the source project that made the saving about a fifth to a quarter, not the list-price gap: two trials measured −31% and −27% at the same tokens. If the cheaper model needs about 1.3 × the calls and context, the saving is gone. The ledger prints each session at its own model's rates and, when another model ran, at the strong model's rates.
+- **Price.** Take the rates from the live price page, not a remembered table. The source project's table had the cheaper model's cache-read rate at twice the published one, which made its saving look like a fifth to a quarter when, at the same tokens, it was half (found by an outside audit and corrected on 2026-11-10). Most of a session's cost is usually cache reads, re-read on every call, so that one rate decides most of the saving. At half the price, a cheaper model that re-reads about twice the tokens saves nothing. The ledger prints each session at its own model's rates and, when another model ran, at the strong model's rates. Its price check compares the computed cost with Claude Code's recorded one, model by model, and says FAILED when a model is more than 5% off.
 - **Usage.** A subscription's meter is the real measure, and providers don't publish how they weigh each model. While a kind is on trial, read the meter (`/usage` in Claude Code) before the first prompt and after the last answer.
 - **Result.** The review.
 

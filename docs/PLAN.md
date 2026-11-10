@@ -71,6 +71,15 @@ New sibling repo `C:\Users\xande\agentic-harness\` (working name; `git init`; ne
 - New harness additions are welcome where they (a) close the self-improvement loop, or (b) let the kit build an impressive project live from scratch. They become packages C and D.
 - New order: **B** kit → **C** live research project → **D** rule trials (loop closing) → **E** presentation.
 
+## Revision 2026-11-10 (owner decisions, after package C and the Fable audit)
+- **D is deferred** until after a public release. It stays in the plan; FINDINGS' first targets wait for it.
+- **Next is a public release this week**, because the owner sends a résumé PDF this week:
+  - fix the price (audit finding 1) in the kit, then in token-ledger;
+  - then package E, owner-led: names, a privacy pass on both repos, the Codex claims check on the final public text, push.
+- **The PDF's words can't change; the repos can.** The PDF only has to show agentic coding and some results. Its figures are ones the price fix can't move (token counts, tests, sessions), and the repos keep improving after the release.
+- **One GitHub account**, the owner's (AndroidTheHuman). Working names: "Android's Agentic Harness" and "Android's Token Ledger", maybe more descriptive. Settle them before the PDF goes out, since its link can't change.
+- **Making token-ledger run on anyone's transcripts** is the owner's candidate for the stronger portfolio project, after the release (`docs/IDEAS.md`).
+
 ## Package B — the kit (next session, Opus: judging what's portable is the product)
 Also, from the revision:
 - the kit's own `CLAUDE.md` (dogfooding: the kit runs on itself);

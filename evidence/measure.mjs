@@ -1,5 +1,6 @@
 // Recomputes every number the case study and resume cite, from the game repo.
-// Read-only: runs git and reads files; writes nothing.
+// Read-only: runs git and reads files; writes nothing. Ledger costs use evidence/game-repriced.json
+// (from evidence/reprice.mjs) when it exists, and refuse one made at another game commit.
 // Usage: node evidence/measure.mjs "<path to infinity autobattler>" > evidence/NUMBERS.md
 
 import { execFileSync } from 'node:child_process';
@@ -132,10 +133,22 @@ p();
 // --- Ledger
 const ledger = JSON.parse(read('docs/session-ledger.json'));
 const rows = ledger.filter((r) => r.calls > 0).sort((a, b) => a.start.localeCompare(b.start));
-const cost = (r) => r.costUSD ?? r.listUSD ?? 0;
+// The game's committed list prices, re-priced at the kit's rates where evidence/reprice.mjs moved a
+// row (audit finding 1); Claude Code's recorded figure only on a row with no list price.
+const repricedPath = new URL('./game-repriced.json', import.meta.url);
+const repriced = existsSync(repricedPath) ? JSON.parse(readFileSync(repricedPath, 'utf8')) : null;
+if (repriced !== null && repriced.game !== head) {
+  console.error(`evidence/game-repriced.json is for game commit ${repriced.game}, not ${head}: rerun evidence/reprice.mjs first`);
+  process.exit(2);
+}
+const cost = (r) => repriced?.rows[r.id]?.to ?? r.listUSD ?? r.costUSD ?? 0;
 p('## Session ledger (`docs/session-ledger.json`, written by `npm run sessions`)');
 p();
 p('Cost is list-price dollars from the token counts: a relative measure, since the work ran on a subscription.');
+if (repriced !== null)
+  p(
+    `The game's ledger prices Sonnet 5.5 cache reads at twice the published rate, so the ${repriced.moved} rows with a Sonnet call are re-priced at the kit's rates (${repriced.rates.join('; ')}): $${fmt(repriced.fromUSD, 2)} → $${fmt(repriced.toUSD, 2)}, by \`${repriced.generatedBy}\` into \`evidence/game-repriced.json\`; ${repriced.notRepriced.length} such rows had no transcript left to re-price.`,
+  );
 p();
 p('| Measure | Value |');
 p('| --- | --: |');

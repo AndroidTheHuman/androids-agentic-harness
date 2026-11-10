@@ -1,6 +1,8 @@
 # Resume and portfolio lines
 
 > **Stub.** Claude drafted this from the evidence, aimed at a recruiter. The real wording, voice and format are decided with the owner in package E (presentation).
+>
+> **Out of date since 2026-11-10.** Don't copy from it: the dollar figures, the 58% and "27–31% lower cost per part" predate the price correction (`evidence/AUDIT_FABLE_2026-11.md` finding 1), the 58% is per session rather than per unit of work (finding 2), and the trial percentages were never in `evidence/NUMBERS.md`. Package E rewrites it.
 
 Every figure is from [evidence/NUMBERS.md](evidence/NUMBERS.md). Percentages: average session token cost $14.83 → $6.26 is −58%; average peak context 451k → 268k is −41%. Say "AI coding agents" plainly: hiding it is worse than stating it.
 

@@ -12,7 +12,7 @@ Agent sessions are short-lived and start cold. Over a long project three things 
 
 1. **Sessions forget; documents don't.** Every session starts from the same short, ranked read: `CLAUDE.md`, the head of `PROJECT_CONTEXT.md`, the active brief, the last handoff. A test can hold that read to a token budget.
 2. **Claims are not facts until checked.** A session never writes the shared project state. Its handoff separates what it *verified* (with the command and the count) from what it only *claims*, and *proposes* the new state; the next session re-runs the evidence before merging. This came from an earlier project where agents appended confident, wrong summaries that later sessions trusted.
-3. **What isn't measured drifts.** A ledger built from Claude Code's own transcripts records each session's calls, context, re-read tokens, cost, commits and gate runs, and flags rule breaks. A prompt hook warns when a session's context grows too large. In the source project the ledger's data led to the one-package-per-session rule, after which average per-session cost fell from $14.83 to $6.26 ([NUMBERS.md](evidence/NUMBERS.md); one project, no control group).
+3. **What isn't measured drifts.** A ledger built from Claude Code's own transcripts records each session's calls, context, re-read tokens, cost, commits and gate runs, and flags rule breaks. A prompt hook warns when a session's context grows too large. In the source project the ledger's data led to the one-package-per-session rule, after which average peak context per session fell from 451k to 268k tokens and average per-session cost from $14.82 to $6.17 ([NUMBERS.md](evidence/NUMBERS.md); one project, no control group, and per session, not per unit of work).
 
 ## What's in the kit
 
@@ -27,12 +27,13 @@ Every ported file starts with `Ported from Infinity Autobattler <path> @ 636f378
 
 ## Lite tier: start here
 
-Target: about 15 minutes to adopt. Not yet timed on a fresh project; timing it is the next package. Needs Node ≥ 22.18 (it runs the `.ts` tools directly) and Claude Code.
+Target: about 15 minutes to adopt. Timed once, on 2026-11-09: a Claude Code session given a kickoff prompt adopted it in an empty folder in 1.4 minutes of wall clock, 12 model calls (`node --no-warnings evidence/adoption-time.mjs "<project folder>"`). It had read the timing rule before it started, so it knew it was being timed. Needs Node ≥ 22.18 (it runs the `.ts` tools directly) and Claude Code.
 
-1. Copy `templates/CLAUDE.lite.md` to `CLAUDE.md` and fill its slots: the project paragraph, the gate command, and the one invariant whose breach is most expensive.
+0. In an empty folder, run `git init` and `npm init -y` first: steps 1 and 4 expect a repo and a `package.json`.
+1. Copy `templates/CLAUDE.lite.md` to `CLAUDE.md` and fill its slots: the project paragraph, the gate command, and the one invariant whose breach is most expensive. A project with no gate yet can take the kit's: `npm run check` (`tsc --noEmit`, then `vitest run`), with the kit's `tsconfig.json` and its three devDependencies (`typescript`, `vitest`, `@types/node`).
 2. Copy `templates/PROJECT_CONTEXT.md` to `PROJECT_CONTEXT.md` and write the "Now" block. Copy `templates/IDEAS.md` to `docs/IDEAS.md`, and create `docs/briefs/` and `docs/archive/CHANGELOG.md` (a title, then `## Changelog`).
 3. Copy `skills/session-handoff/` and `skills/brief-spec/` into `.claude/skills/`.
-4. Copy `tools/sessions.ts` and `tools/sessionMeasures.ts` into `tools/`. Set `GATE` at the top of `sessions.ts` to your gate command, and add `"sessions": "node --no-warnings tools/sessions.ts"` to `package.json`'s scripts. Merge `tools/hook.settings.json` into `.claude/settings.json`.
+4. Copy `tools/sessions.ts` and `tools/sessionMeasures.ts` into `tools/`, and `tests/sessionMeasures.test.ts` and `tests/sessions.test.ts` into `tests/`, so the gate covers them. `GATE` at the top of `sessions.ts` is `npm run check`; change it only if your gate command differs (or pass `--gate`). Add `"sessions": "node --no-warnings tools/sessions.ts"` to `package.json`'s scripts. Merge `tools/hook.settings.json` into `.claude/settings.json`.
 5. Write brief 001 from `templates/briefs/implementation.md`, or ask the first session to draft it with `brief-spec` and stop for your approval.
 
 What you get: the same start for every session, briefs a fresh session can build without judgment calls, handoffs where claims wait for a check, a gate before any claim, one package per session, and a ledger row for every session (`npm run sessions -- --current`).
@@ -62,9 +63,9 @@ npm run sessions -- --gate="<command>"                # count a different gate c
 
 It reads Claude Code's transcripts (`~/.claude/projects/<slug>/*.jsonl`, sub-agents included). For each session it records wall clock, work and wait time, prompts, model calls, peak and final context, tokens re-read from cache, output and thinking tokens, the model and effort, cost at list price (and at the strong model's rates when another model ran), tool errors, gate runs, commits and lines added. It flags context over 250k, re-read over 30M, more than one commit, cold re-caches, big reads, long waits and model switches. Rows outlive their transcripts, which Claude Code deletes after about 30 days.
 
-The port is checked against the source: `node --no-warnings evidence/ledger-port-check.mjs "<game repo>"` recomputes every row the game committed at `636f378` whose transcript survives. All 170 match: 159 as they are, 10 once a cost record Claude Code appended hours later is left out, and the newest row at the point where its own session recorded it. The other 37 rows' transcripts are gone.
+The port is checked against the source: `node --no-warnings evidence/ledger-port-check.mjs "<game repo>"` recomputes every row the game committed at `636f378` whose transcript survives, at the game's own rates. On 2026-11-10 all 158 match: 147 as they are, 10 once a cost record Claude Code appended hours later is left out, and the newest row at the point where its own session recorded it. The other 49 rows' transcripts are gone. The kit's rates differ from the game's in one place: Sonnet 5.5's cache read, which the game's table had at twice the published rate. That changes the price of 42 of the game's rows; `evidence/NUMBERS.md` uses the corrected prices.
 
-Limits: it reads Claude Code's transcript format, which can change; `PRICES` in `sessionMeasures.ts` lists only Opus 5.5 and Sonnet 5.5, and other models show as "unpriced"; on a subscription the cost is a relative measure, not a bill.
+Limits: it reads Claude Code's transcript format, which can change; `PRICES` in `sessionMeasures.ts` lists only Opus 5.5 and Sonnet 5.5 (checked against the live price page on 2026-11-10), and other models show as "unpriced"; on a subscription the cost is a relative measure, not a bill. The *Session* column is Claude Code's title for the session or, without one, the first 60 characters of your first prompt: transcript text, so read it before you commit the ledger to a public repo.
 
 ## This repo runs on the kit
 

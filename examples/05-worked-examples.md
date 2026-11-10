@@ -42,9 +42,10 @@ That became the sub-agent trial: a side task inside a session whose own model is
 
 - **Two kinds promoted.** Class 3/4 implementation parts moved to Sonnet on 2026-10-16, after trials 2 and 3 were clean; class 1 parts followed on 2026-10-19. 41 of the 207 sessions ran on Sonnet.
 - **The saving was the measured one, not the list-price one.** At the same tokens the trials cost 31% and 27% less (brief 027 part A: $3.67 against $5.34 at Opus rates; part B: $5.84 against $8.02). Cache reads cost the same on both models, and they are most of the bill.
+  - **Corrected 2026-11-10.** That figure, and the sentence after it, came from the game's price table, which had Sonnet 5.5's cache reads at twice the published rate. At the published rates every Sonnet 5.5 rate is half the Opus 5.5 rate, so at the same tokens the saving is half (`evidence/AUDIT_FABLE_2026-11.md` finding 1; the re-priced rows are in `evidence/NUMBERS.md`). The promotions stand: a larger saving only strengthens them.
 - **Two trials failed and stayed failed.** Haiku as a reading-pass sub-agent found 2 of 5 known problems, and 8 of its 23 notes were real. Haiku as a text auditor: 13 of 40 notes were real. Both jobs stayed with the session. The reviewer re-read one run and found the answer key had misses of its own, but the verdict stood: "the measures were fixed before the run, and a re-score after reading the answers is what fixing them prevents."
 
-**What it shows.** An open "I wonder if…" became a trial whose pass mark was written down first. The answer was smaller than the intuitive one (a fifth to a quarter, not half), and half the trials said no.
+**What it shows.** An open "I wonder if…" became a trial whose pass mark was written down first. The answer looked smaller than the intuitive one (a fifth to a quarter, not half), and half the trials said no. A month later an outside audit found that the price table behind "a fifth to a quarter" was wrong, and the intuitive answer, half, was right (see the correction above).
 
 ---
 
