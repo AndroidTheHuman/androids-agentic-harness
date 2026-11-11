@@ -1,6 +1,6 @@
 # Package E, this repo's side — public release
 
-**Status:** draft (2026-11-11). D1 and D3–D6 and D10's timing are the owner's (2026-11-11); the rest are recommended, and the owner approves them with the brief.
+**Status:** approved (2026-11-11). D1 and D3–D6 and D10's timing are the owner's (2026-11-11); the rest were recommended, and the owner approved them with the brief, unchanged (2026-11-11).
 **Kind:** implementation brief, one part.
 **Size:** S, one part (§7).
 **Model:** Opus 5.5 xhigh: public text and the triage of an outside check, as in token-ledger's release (its brief 002).

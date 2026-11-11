@@ -31,12 +31,20 @@ describe('skills', () => {
 describe('references', () => {
   // backticked or linked paths into the kit's own folders, without placeholders
   const KIT_PATH = /(?:`|\]\()((?:templates|skills|tools|tests|examples|evidence)\/[^`)\s<>*]*)/g;
+  // What .gitignore keeps out of the repo. A named ignored folder (evidence/private/) is named on
+  // purpose and absent from every clone; a link to an ignored path is broken for every visitor.
+  const IGNORE = text('.gitignore').split('\n').map((l) => l.trim()).filter((l) => l !== '' && !l.startsWith('#'));
+  const ignored = (path: string) => {
+    const p = path.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/$/, '');
+    return IGNORE.some((l) => (l.endsWith('/') ? p === l.slice(0, -1) || p.startsWith(l) : p === l));
+  };
 
   it('every kit path the README and CLAUDE.md name exists', () => {
     for (const f of ['README.md', 'CLAUDE.md', 'examples/README.md']) {
       const base = f.startsWith('examples/') ? 'examples' : '.';
       for (const m of text(f).matchAll(KIT_PATH)) {
         const p = (m[1] as string).replace(/\/$/, '');
+        if (ignored(p)) continue;
         expect(existsSync(join(base, p)) || existsSync(p), `${f} names ${p}`).toBe(true);
       }
     }
@@ -47,7 +55,8 @@ describe('references', () => {
     for (const f of docs) {
       const dir = f.includes('/') ? f.slice(0, f.lastIndexOf('/')) : '.';
       for (const m of text(f).matchAll(/\]\((?!https?:)([^)#\s]+)/g)) {
-        expect(existsSync(join(dir, m[1] as string)), `${f} links ${m[1]}`).toBe(true);
+        const target = join(dir, m[1] as string);
+        expect(existsSync(target) && !ignored(target), `${f} links ${m[1]}`).toBe(true);
       }
     }
   });

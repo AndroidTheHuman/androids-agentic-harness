@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "description": "A harness for directing AI coding agents on long-running work: templates, skills, a session cost ledger and doc-budget checks.",
+  "license": "MIT",
   "engines": {
     "node": ">=22.18"
   },

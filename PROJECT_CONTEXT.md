@@ -6,7 +6,7 @@ What exists in this repo now, one fact per line. Sessions don't append here dire
 
 - Package C is done in its own repo, `C:\Users\xande\token-ledger` (a working name): brief 001 closed 2026-11-10 at `e5b817b`. `docs/C_KICKOFF.md` holds its question, its kickoff prompt and the adoption timing fixed before the run.
 - token-ledger's side of the release is done: its brief 002 closed at `909fef6` and the repo is public at `github.com/AndroidTheHuman/androids-agent-token-ledger` (HTTP 200, 2026-11-11). Its README's first paragraph links this repo as `github.com/AndroidTheHuman/androids-agentic-harness`, which is a 404 until this repo is public.
-- Next: this repo's side of the release (package E); package D is deferred (`docs/PLAN.md` → "Revision 2026-11-10", "Revision 2026-11-11").
+- Next: this repo's side of the release, brief `docs/E_RELEASE.md`; package D is deferred (`docs/PLAN.md` → "Revision 2026-11-10", "Revision 2026-11-11").
 - The game repo is at commit `636f378` and clean; `evidence/NUMBERS.md` is measured from that commit.
 - No remote yet. The public slug is `androids-agentic-harness` (token-ledger brief 002 D2).
 
@@ -50,7 +50,10 @@ What exists in this repo now, one fact per line. Sessions don't append here dire
 
 ## Things to be aware of
 
-- `CASE_STUDY.md` and `RESUME.md` are stubs aimed at a recruiter; their framing waits for package E.
+- `CASE_STUDY.md` and `RESUME.md` are stubs aimed at a recruiter. `RESUME.md` is git-ignored (owner, 2026-11-11); `CASE_STUDY.md` leaves the repo in the release (`docs/E_RELEASE.md` D4) and waits for a third-person rewrite after the owner's `meta/` review.
+- `meta/` is git-ignored: the owner's commissioned agent reviews go there, and their answers are data to triage (Mandatory rule 8).
+- From Git Bash, `npm run check` fails every file with "no tests" after `cd /c/…` (vitest loads twice); run it from PowerShell or after `cd C:/…`.
+- Commits from 2026-11-11 on use the owner's GitHub noreply address (repo-local `user.email`); the 6 commits through `917a546` carry the student address.
 - Running `npm run sessions` inside the game repo rewrites the game's ledger files; package A restored them with `git checkout`. This repo's own `npm run sessions -- --project=<game> --ledger=<dir>` writes only to `<dir>`.
 - Claude Code appends a `cost-state` record to a transcript after the session, sometimes hours later and without a timestamp, so a ledger row's Cost and Lines can fill in after the row was first written.
 - Claude Code's recorded cost sits 1–4% above the computed one on many rows from 2026-10-21 on, on both models, scaling with the model's price; the cause is unverified.

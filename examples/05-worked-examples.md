@@ -47,6 +47,8 @@ That became the sub-agent trial: a side task inside a session whose own model is
 
 **What it shows.** An open "I wonder if…" became a trial whose pass mark was written down first. The answer looked smaller than the intuitive one (a fifth to a quarter, not half), and half the trials said no. A month later an outside audit found that the price table behind "a fifth to a quarter" was wrong, and the intuitive answer, half, was right (see the correction above).
 
+**Corrected 2026-11-11.** "Half the trials said no" has no denominator in this repo. This example names two failed trials; `evidence/NUMBERS.md` counts 8 model-routing trials but not their verdicts (claims check H2, item 3).
+
 ---
 
 ## 2. "I just got Codex" → outside review, measured (2026-10-25 → 11-08)
@@ -81,6 +83,7 @@ It proposed three routes (a commit review, a cold read of a brief before it is b
 
 - 39 outside reviews by 2026-11-08. Of the 31 runs from R9 (the first after the owner's decision) to R39, 28 raised items and 22 had every item confirmed against the code ([NUMBERS.md](../evidence/NUMBERS.md)). Most confirmed items were gaps in a brief, settled before the part was built rather than found halfway through it.
 - Confirmed items become checks for the next planned part, never impromptu fixes. Instructions found in an answer go to the owner.
-- The same route checked this repository's own case study: Codex checked 64 claims and raised 8 items, and all 8 were confirmed or accepted ([OUTSIDE_REVIEW.md](../evidence/OUTSIDE_REVIEW.md)).
+- The same route checked this repository's own case study: Codex checked 64 claims and raised 8 items, and all 8 were confirmed or accepted ([OUTSIDE_REVIEW.md](../evidence/OUTSIDE_REVIEW.md)). The case study is out of the public repo until its third-person rewrite (2026-11-11).
+  - **Note 2026-11-11.** Items 5 and 6 of the 8 were framing objections that were accepted, not facts confirmed against the files; the log's *Triage* column tells the two apart (claims check H2, item 6).
 
 **What it shows.** A new tool became a measured route, not a habit. When the pre-set rule said no, it stayed no, and when the owner overrode it, the reason was written down. The skill is [skills/outside-review](../skills/outside-review/SKILL.md); the outside agents' role file is [templates/AGENTS.md](../templates/AGENTS.md).
