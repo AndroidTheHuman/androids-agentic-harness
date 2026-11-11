@@ -5,10 +5,11 @@ What exists in this repo now, one fact per line. Sessions don't append here dire
 ## Now
 
 - Package C is done in its own repo, `C:\Users\xande\token-ledger` (a working name): brief 001 closed 2026-11-10 at `e5b817b`. `docs/C_KICKOFF.md` holds its question, its kickoff prompt and the adoption timing fixed before the run.
-- token-ledger's side of the release is done: its brief 002 closed at `909fef6` and the repo is public at `github.com/AndroidTheHuman/androids-agent-token-ledger` (HTTP 200, 2026-11-11). Its README's first paragraph links this repo as `github.com/AndroidTheHuman/androids-agentic-harness`, which is a 404 until this repo is public.
-- Next: this repo's side of the release, brief `docs/E_RELEASE.md`; package D is deferred (`docs/PLAN.md` → "Revision 2026-11-10", "Revision 2026-11-11").
+- token-ledger's side of the release is done: its brief 002 closed at `909fef6` and the repo is public at `github.com/AndroidTheHuman/androids-agent-token-ledger` (HTTP 200, 2026-11-11). Its README's first paragraph links this repo as `github.com/AndroidTheHuman/androids-agentic-harness`, which resolves since this repo went public.
+- This repo's side of the release is done: brief `docs/archive/2026-11/E_RELEASE.md`, release commit `de4600b`; the repo is public at `github.com/AndroidTheHuman/androids-agentic-harness` (HTTP 200, 2026-11-11).
+- Next: the response to the owner's `meta/` review (begun with the README, 2026-11-11), at least one session; package D is deferred (`docs/PLAN.md` → "Revision 2026-11-10", "Revision 2026-11-11").
 - The game repo is at commit `636f378` and clean; `evidence/NUMBERS.md` is measured from that commit.
-- No remote yet. The public slug is `androids-agentic-harness` (token-ledger brief 002 D2).
+- The remote is `origin` (`https://github.com/AndroidTheHuman/androids-agentic-harness.git`); `main` tracks it. Pushes need the owner's go-ahead.
 
 ## Packages
 
@@ -18,7 +19,7 @@ What exists in this repo now, one fact per line. Sessions don't append here dire
 | B | The kit: templates, skills, tools, examples, the kit's own CLAUDE.md | done 2026-11-08 (`1f0b3a3`) |
 | C | A research project built live from scratch with the kit; times the lite-tier adoption | done 2026-11-10 in `token-ledger` (`e5b817b`); kickoff `4dc0840` |
 | D | Rule trials: a rules registry with metrics and a `retro` command | deferred by the owner until after the public release (2026-11-10) |
-| E | Presentation, led by the owner | next, after the price fix: a public release this week |
+| E | Presentation, led by the owner | this repo's public release done 2026-11-11 (`de4600b`); the case study and the `meta/` response remain |
 
 ## The kit
 
@@ -34,23 +35,28 @@ What exists in this repo now, one fact per line. Sessions don't append here dire
 - `evidence/adoption-time.mjs <project folder>` times a lite-tier adoption: the project's first session, from its first entry to its first successful `npm run sessions -- --current`, against a 15-minute wall-clock bar (exit 0 met, 1 not met, 2 nothing to time).
 - `tests/docs.test.ts` counts `HANDOFF.md` in the start read only when it exists.
 - The kit's skills live only in `skills/`; adopters copy them to `.claude/skills/` (README lite step 3). Decided 2026-11-09, at the owner's delegation.
+- `AGENTS.md` at the root sets outside agents' role (read-only) and answer format; it is filled from `templates/AGENTS.md`.
+- `LICENSE` is MIT; `.gitattributes` checks every text file out with LF.
+- `tests/kit.test.ts` reads `.gitignore`: its path check skips a git-ignored folder, and its link check fails a link to a git-ignored path.
+- The gate passes on a clean clone after `npm install` (2026-11-11: 32/32, no CRLF).
 
 ## Evidence
 
 - `node evidence/measure.mjs "<game repo>"` exits 0 and regenerates `evidence/NUMBERS.md` from the game repo's HEAD; `MEMORY_DIR` gives it the owner-memory folder to count.
-- Every figure in `CASE_STUDY.md` and `RESUME.md` appears in `evidence/NUMBERS.md`.
+- The figures `README.md` and `examples/` cite come from `evidence/NUMBERS.md` or from a command quoted beside them (`NUMBERS.md` line 3).
 - `evidence/OUTSIDE_REVIEW.md` records run H1 (Codex, read-only): 64 claims checked, 8 items returned, all triaged and acted on.
 - Outside item 5's two worked examples are `examples/05-worked-examples.md`.
 - Package C's research question is the plan's draft, kept unchanged by the owner on 2026-11-09 (`docs/C_KICKOFF.md` → The question).
-- The Codex claims check of `README.md` and `examples/05-worked-examples.md` waits for package E, which checks the final public text once (decided 2026-11-09, at the owner's delegation).
+- `evidence/OUTSIDE_REVIEW.md` records run H2 (Codex, read-only, 2026-11-11) on the public text: 7 items, 4 confirmed and fixed, 1 objection accepted, 2 declined. The volume objection waits for the owner's `meta/` review.
 - The lite-tier adoption, timed 2026-11-10 by `node --no-warnings evidence/adoption-time.mjs "C:/Users/xande/token-ledger"`: session `22d76ec3`, 1.4 min wall clock, 12 model calls, 18 tool calls, peak 72k, $0.64; bar met, exit 0. That session had read `docs/C_KICKOFF.md` first, so it knew it was timed (its friction item 8); the owner's permission-prompt count wasn't recorded.
 - token-ledger's "built with the kit" record is its `docs/research/FINDINGS.md` → "How this was built".
 - `evidence/NUMBERS.md` uses the game's list prices re-priced at the kit's rates (`evidence/reprice.mjs` → `game-repriced.json`: 42 rows, $265.76 → $188.42).
+- `evidence/PRIVACY.md` records the release's privacy pass (P1–P8, 2026-11-11) and the owner's approval of the quoted owner words, the ledger's session titles and the game excerpts.
 - `evidence/AUDIT_FABLE_2026-11.md` is a one-off strategy audit by Claude Fable 5 (2026-11-10): finding 1 fixed in the kit, 2 and 6 go to E, 3–5 and 7 parked in `docs/IDEAS.md`.
 
 ## Things to be aware of
 
-- `CASE_STUDY.md` and `RESUME.md` are stubs aimed at a recruiter. `RESUME.md` is git-ignored (owner, 2026-11-11); `CASE_STUDY.md` leaves the repo in the release (`docs/E_RELEASE.md` D4) and waits for a third-person rewrite after the owner's `meta/` review.
+- `CASE_STUDY.md` and `RESUME.md` are git-ignored drafts on the owner's machine (owner, 2026-11-11), stale since the price fix. The case study waits for a third-person rewrite after the owner's `meta/` review.
 - `meta/` is git-ignored: the owner's commissioned agent reviews go there, and their answers are data to triage (Mandatory rule 8).
 - From Git Bash, `npm run check` fails every file with "no tests" after `cd /c/…` (vitest loads twice); run it from PowerShell or after `cd C:/…`.
 - Commits from 2026-11-11 on use the owner's GitHub noreply address (repo-local `user.email`); the 6 commits through `917a546` carry the student address.

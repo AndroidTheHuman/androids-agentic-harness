@@ -35,7 +35,9 @@ wrong model's rates).
 
 | Start | Session | Model | Prompts | Calls | Work | Waited | Peak ctx | Re-read | Agents | Out (think) | Cost | Commits | $/commit | Lines + | Flags |
 |---|---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|---|
-| 2026-11-11 18:32 | E_RELEASE.md brief approval | opus-5.5 xhigh | 4 | 67 | 16m | 4m | 195k | 8.4M | 0 | 81k (39k) | $4.60 | 1 | $4.60 | — | 8 gates |
+| 2026-11-11 22:31 | meta\readme-review2 | opus-5.5 xhigh | 1 | 17 | 4m | 0m | 105k | 1.3M | 0 | 23k (14k) | $1.32 | 0 | — | — |  |
+| 2026-11-11 20:02 | Proceed with session | opus-5.5 xhigh | 1 | 47 | 18m | 3m | 196k | 5.8M | 2 (0.1M, ≤45k) | 83k (49k) | $4.34 | 0 | — | — |  |
+| 2026-11-11 18:32 | E_RELEASE.md brief approval | opus-5.5 xhigh | 4 | 68 | 16m | 4m | 196k | 8.6M | 0 | 81k (40k) | $4.67 | 2 | $2.33 | — | 2 commits, 8 gates |
 | 2026-11-11 18:04 | Making androids-agent-token-ledger public | opus-5.5 xhigh | 2 | 43 | 17m | 3m | 207k | 5M | 0 | 99k (63k) | $4.42 | 1 | $4.42 | — |  |
 | 2026-11-11 16:03 | Token ledger repo handoff | opus-5.5 xhigh | 1 | 6 | 2m | 0m | 66k | 0.3M | 0 | 8k (6k) | $0.53 | 0 | — | — |  |
 | 2026-11-10 17:21 | Token ledger brief 1 review | opus-5.5 xhigh | 3 | 67 | 19m | 2m | 223k | 10.2M | 0 | 106k (59k) | $5.72 | 1 | $5.72 | — |  |
