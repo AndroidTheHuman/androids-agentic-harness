@@ -8,7 +8,7 @@ This repo is a kit for directing AI coding agents on long-running work, plus the
 
 1. This file.
 2. `PROJECT_CONTEXT.md`: what exists now, one fact per line. Read its head (Now and Packages). A session that writes a package brief or changes the plan reads all of it.
-3. `docs/PLAN.md`: the approved plan. Read its revisions first, newest first ("Revision 2026-11-10", then "Revision after package A"), then your package's section. The rest is background, read when a question needs it.
+3. `docs/PLAN.md`: the approved plan. Read its revisions first, newest first ("Revision 2026-11-11", "Revision 2026-11-10", then "Revision after package A"), then your package's section. The rest is background, read when a question needs it.
 4. `HANDOFF.md`, if present: run its "Check first" items **before** new work. Merge its `[PROPOSED]` lines: changelog lines go to the end of `docs/archive/CHANGELOG.md`, and current-state lines go into `PROJECT_CONTEXT.md`. Then move it to `docs/archive/<YYYY-MM>/HANDOFF_<date>_<package>.md`.
 
 `tests/docs.test.ts` holds this read to 20k tokens (characters ÷ 2.2). When a merge breaks the budget, move facts word for word to the document that owns them (`npm run doc-moves`); never cut.

@@ -35,7 +35,9 @@ wrong model's rates).
 
 | Start | Session | Model | Prompts | Calls | Work | Waited | Peak ctx | Re-read | Agents | Out (think) | Cost | Commits | $/commit | Lines + | Flags |
 |---|---|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|---|
-| 2026-11-10 17:21 | Token ledger brief 1 review | opus-5.5 xhigh | 3 | 64 | 17m | 2m | 211k | 9.6M | 0 | 93k (54k) | $5.25 | 0 | — | — |  |
+| 2026-11-11 18:04 | Making androids-agent-token-ledger public | opus-5.5 xhigh | 2 | 39 | 15m | 3m | 197k | 4.2M | 0 | 90k (60k) | $4.00 | 0 | — | — |  |
+| 2026-11-11 16:03 | Token ledger repo handoff | opus-5.5 xhigh | 1 | 6 | 2m | 0m | 66k | 0.3M | 0 | 8k (6k) | $0.53 | 0 | — | — |  |
+| 2026-11-10 17:21 | Token ledger brief 1 review | opus-5.5 xhigh | 3 | 67 | 19m | 2m | 223k | 10.2M | 0 | 106k (59k) | $5.72 | 1 | $5.72 | — |  |
 | 2026-11-10 16:04 | Agentic harness architecture and reliability audit | fable-5.2 high | 2 | 22 | 14m | 1m | 257k | 3.4M | 0 | 72k (38k) | $0.00 | 0 | — | — | context 257k, unpriced fable-5.2 |
 | 2026-11-09 00:05 | HANDOFF.md package C research question | opus-5.5 xhigh | 1 | 32 | 12m | 1m | 142k | 3.3M | 0 | 61k (41k) | $2.76 | 1 | $2.76 | 284 |  |
 | 2026-11-08 22:41 | HANDOFF.md package B | opus-5.5 xhigh | 1 | 70 | 21m | 2m | 311k | 15.2M | 0 | 125k (39k) | $7.79 | 2 | $3.90 | 2172 | context 311k, 2 commits |

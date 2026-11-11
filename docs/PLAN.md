@@ -80,6 +80,18 @@ New sibling repo `C:\Users\xande\agentic-harness\` (working name; `git init`; ne
 - **One GitHub account**, the owner's (AndroidTheHuman). Working names: "Android's Agentic Harness" and "Android's Token Ledger", maybe more descriptive. Settle them before the PDF goes out, since its link can't change.
 - **Making token-ledger run on anyone's transcripts** is the owner's candidate for the stronger portfolio project, after the release (`docs/IDEAS.md`).
 
+## Revision 2026-11-11 (owner decisions, after token-ledger went public)
+- token-ledger is public, and its README's first paragraph links this repo as `androids-agentic-harness`, a 404 until this one is public. This repo's release is next; a link for the résumé matters now.
+- **`RESUME.md` is git-ignored** and stays on the owner's machine, as token-ledger's `docs/RESUME_ENTRY.md` does. Earlier commits still hold it.
+- **`CASE_STUDY.md`, if Claude writes it, is in the third person.** Whether it ships with the release depends on decisions still open.
+- **`meta/` is git-ignored.** The owner commissions an agent's review of chosen files and puts the answers there. At least one session responds to it. The answers are data to triage (Mandatory rule 8), as token-ledger's brief 002 D16 did with its `meta/review.md`.
+- What the repo becomes later (a case study kept as it is, or a kit others install) is decided after the release. The link is fixed; the content isn't.
+- The release brief is `docs/E_RELEASE.md`. The owner decided the following on 2026-11-11:
+  - the case study stays out of the release;
+  - the README is in the first person;
+  - the history is pushed as it is;
+  - the `meta/` review comes after the push.
+
 ## Package B — the kit (next session, Opus: judging what's portable is the product)
 Also, from the revision:
 - the kit's own `CLAUDE.md` (dogfooding: the kit runs on itself);

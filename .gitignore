@@ -1,2 +1,6 @@
 node_modules/
 evidence/private/
+# The résumé lines stay on the owner's machine; the résumé carries their text (owner, 2026-11-11).
+RESUME.md
+# The owner's own notes, such as a commissioned agent review of chosen files (owner, 2026-11-11).
+meta/
